@@ -1,0 +1,56 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+using namespace std;
+
+int FirstOccurence(int arr[],int size , int key){
+    int LowerB=0;
+    int HigherB=size -1;
+    int result = -1;
+    while (LowerB<=HigherB){
+        int Midpoint = (LowerB+HigherB)/2;
+        if(arr[Midpoint]==key){
+            result = Midpoint; // store index in result
+            HigherB = Midpoint-1; //shifts left
+        }
+        else if (arr[Midpoint]>=key){
+            HigherB = Midpoint-1;
+        }
+        else {
+            LowerB = Midpoint+1;
+        }
+    }
+    return result;
+}
+
+int LastOccurence (int arr[],int size , int key){
+    int LowerB=0;
+    int HigherB=size-1;
+    int result = -1;
+    while (LowerB<=HigherB){
+        int Midpoint = (LowerB+HigherB)/2;
+        if (arr[Midpoint]==key){
+            result = Midpoint; // store index
+            LowerB = Midpoint +1; //shifts right
+        }
+        else if (arr[Midpoint]<=key){
+            LowerB=Midpoint +1;
+        }
+        else {
+            HigherB=Midpoint-1;
+        }
+    }
+    return result;
+}
+
+int CountOccurences(int arr[],int size , int key){
+    int First=FirstOccurence(arr,size , key);
+    int Last = LastOccurence(arr,size,key);
+    return Last-First+1;
+}
+int main() {
+   
+   
+   
+    return 0;
+}
