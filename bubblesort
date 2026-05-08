@@ -1,0 +1,39 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+using namespace std;
+
+void swap(int a , int b){
+    int temp = a;
+    a = b;
+    b = temp;
+}
+void BubbleSort(int arr[] , int size ){
+    int count =0; //count for swaps
+    for (int i =0 ; i<size-1 ; i++ ){
+        for (int j=0 ; j<size-i-1 ; j++){
+            if (arr[j] > arr[j+1]){
+                swap(arr[j],arr[j+1]);
+                count++; // increment counter 
+                
+            }
+            else{
+                cout << "No swap happened \n";
+            }
+        }
+        cout << "pass number " << i << " : " << arr[i];
+    }
+        
+}
+
+
+
+int main() {
+   
+   const int size = 5;
+   int Array[5]={3,4,1,2,5};
+   
+   BubbleSort(Array,5);
+   
+    return 0;
+}
