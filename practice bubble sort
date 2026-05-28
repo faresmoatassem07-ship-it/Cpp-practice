@@ -1,0 +1,75 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+using namespace std;
+
+class Product {
+    private:
+    string Name;
+    int Code;
+    int Price;
+    
+    public:
+    Product(){
+        Name = " ";
+        Code=0;
+        Price=0;
+    }
+    Product (string N , int C , int P){
+        Name = N;
+        Code = C;
+        Price = P;
+    }
+    void print(){
+        cout << "the Name is: " <<Name<<endl;
+        cout << "the Price is: " <<Price<<endl;;
+        cout << "the Code is: " <<Code <<endl;
+    }
+    int get_Price(){
+        return Price;
+    }
+    string get_Name(){
+        return Name;
+    }
+};
+
+
+void Swap(int &a, int &b){
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+void BubbleSort(Product P[],int length){
+    bool swapped=false;
+    int CountComparisons=0;
+    int CountSwaps=0;
+    for(int i = 0 ; i<length-1 ; i++){ //controls passes
+        for (int j = 0 ; j<length-i-1; j++){ //controls comparisons
+             CountComparisons++;
+            if(P[j].get_Price()>P[j+1].get_Price()){
+                swap(P[i].get_Price,P[i+1].get_Price());//not right , correct:
+
+                Product temp = P[j];
+                P[j] = P[j+1];
+                P[j+1] = temp;
+                swapped=true;
+                CountSwaps++; //since we compare using getters but swap the WHOLE object
+            }
+        }
+        for (int k = 0; k < length; k++) {
+        cout << "current Array: " << P[k].get_Price()<< "\n";
+    }
+    cout <<"the Total number of comparisons are: " <<CountComparisons <<endl;
+    cout <<"the Total number of swaps are: " <<CountSwaps <<endl;
+    if (!swapped){
+        break;
+    }
+}
+}
+
+void DisplayContents(Product P[] , int length){
+    for (int z =0 ; z <length ; z++){
+        cout << P[z].get_Name() <<P[z].get_Price() <<endl;
+    }
+}
