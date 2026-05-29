@@ -1,0 +1,71 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+using namespace std;
+
+class Student {
+    private:
+    string Name;
+    int ID;
+    float Gpa;
+    
+    public:
+    Student(){
+        Name = " ";
+        ID = 0;
+        Gpa = 0;
+    }
+    Student (string N , int I , float G){
+        Name=N;
+        ID=I;
+        Gpa=G;
+    }
+    void print(){
+        cout <<"The Name is: " <<Name <<endl;
+        cout <<"The ID is: " <<ID <<endl;
+        cout <<"The Gpa is: " <<Gpa <<endl;
+    }
+    string get_Name(){
+        return Name;
+    }
+    int get_ID(){
+        return ID;
+    }
+};
+
+void InsertionSort(Student S[],int length){
+    int CountComparisons=0;
+    int CountShifts=0;
+    for (int i =1 ; i<length ; i++){ // outerloop will start from index 1 till end to control sorted and unsorted border
+        Student key = S[i].get_ID(); //our (value) key that we will insert if needed
+        cout<< "current key: " <<key <<endl;
+        cout << "currect key Student Name " <<S[i].get_Name() <<endl;
+        
+        int j = i-1; //j will be the previous element before i
+        CountComparisons++;
+        while (j>=0 && S[j].get_ID()>key){ //check if element j (sorted section)is greater than key (unsorted section)
+        
+        S[j+1]=S[j]; //shift right to make place for insertion
+        cout <<"will now shift" <<endl;
+        CountShifts++;
+        j--; //contoinue looking left in sorted part 
+    }
+        S[j+1]=key; // correct insertion spot
+        cout <<"the ID that got inserted: " <<S[j+1].get_ID();
+        cout <<"the insertion position was: " <<j+1 <<endl;
+        for(int k = 0 ; k<length ; k++){
+            cout << S[k].get_ID() <<endl;
+        }
+        
+    }
+    
+    cout<< "Total comparisons are: " <<CountComparisons<<endl;;
+    cout <<"Total Shifts are: " <<CountShifts<<endl;
+
+}
+
+void displayContents(Student s[], int length){
+    for(int x = 0 ; x < length ; x++){
+        cout << S[x].get_Name() << S[x].get_ID() <<endl;
+    }
+}
