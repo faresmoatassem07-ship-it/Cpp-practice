@@ -1,0 +1,90 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+using namespace std;
+
+class Employee {
+    private:
+    string Name;
+    int ID;
+    int Salary;
+    
+    public:
+    Employee(){
+        Name = " ";
+        ID=0;
+        Salary=0;
+    }
+    Employee (string N , int I , int S){
+        Name = N;
+        ID = I;
+        Salary = S;
+    }
+    void print(){
+        cout << "the Name is: " <<Name<<endl;
+        cout << "the ID is: " <<ID<<endl;
+        cout << "the Salary is: " <<Salary <<endl;
+    }
+    int get_Salary(){
+        return Salary;
+    }
+    string get_Name(){
+        return Name;
+    }
+};
+
+
+void Swap(int &a, int &b){
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+void SelectionSort(Employee E[],int length){
+    int CountComparisons=0;
+    int CountSwaps=0;
+    int MaxValue=-999999;
+    
+    for(int i =0 ; i<length-1 ; i++){
+        int  MinIndex=i;
+        int MaxIndex=i; //for decending
+        for(int j=i+1 ; j<length ; j++){
+        CountComparisons++; //before if to count every comparison
+        
+          if (E[j].get_Salary()<E[MinIndex].get_Salary()){ //ascending
+             MinIndex=j;
+          }
+        else{
+            cout <<"swapping not needed \n";
+        }
+          if (E[j].get_Salary()>E[MaxIndex].get_Salary()){ //decending
+              CountComparisons++;
+              MaxIndex=j
+              MaxValue=E[j].get_Salary(); //max is int so right side should also be int
+          }
+          else{
+            cout <<"swapping not needed \n";
+        }
+        
+        }
+        Employee temp = E[MaxIndex].get_Salary; //or min for ascending
+        E[MaxIndex].get_Salary=E[i];
+        E[i]=temp;
+        CountSwaps++;
+
+        for(int k=0; k <length ; k++){
+            cout << "current Array: " <<E[k].get_Salary()<<endl;
+        }
+        cout <<"the Min for pass number: " << i << MinIndex<<endl;
+        cout <<"the current MaxIndex is: " <<MaxIndex<<endl;
+        cout <<"the current Max Value is: " <<MaxValue<<endl;
+    }
+    
+}
+
+void DisplayContents(Employee E[],int length){
+    for (int x=0 ; int x < size ; x++){
+        cout <<E[].get_Name() <<E[].get_Salary;
+    }
+}
+
