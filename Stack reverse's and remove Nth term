@@ -1,0 +1,64 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+#include <stack>
+using namespace std;
+
+Stack reverse1(Stack s){ // or should it be &S?
+    stack<int>temp;
+    while(!s.empty()){
+        temp.push(s.top());
+        s.pop();
+    }
+    return temp;
+}
+
+Stack reverse2(Stack<int>&s){
+    stack<int>temp;
+    stack<int>result; //reverse for S
+    while(!s.empty()){
+        temp.push(s.top()); //pushes copy of element from s to result(without removing it from s)
+        result.push(s.top()); //pushes copy of element from s to result
+        s.pop(); //pops top
+    }
+    while(!temp.empty()){
+        s.push(temp.top()); // pushes copy of top element from temp to s without removing it from temp
+        temp.pop();
+    } //we now restored the origninal order of s
+    return result; // the reversed order of s
+}
+    
+void reverse3(stack<int>&s){
+    stack<int>temp;
+    stack<int>result;
+    while(!s.empty()){
+        temp.push(s.top());
+        s.pop();
+    }
+    while(!temp.empty()){
+        result.push(temp.top());
+        temp.pop();
+    }
+    while(!result.empty()){
+        s.push(result.top());
+        result.pop();
+    }
+}
+
+void removeNthterm(stack<int>&s,int n){
+    stack<int>temp;
+    while(!s.empty()){
+        temp.push(s.top());
+        s.pop();
+    }
+    int count =1;
+    while(!temp.empty()){
+        if(count==n){
+            temp.pop();
+        }
+        else {
+            s.push(temp.top());
+            temp.pop();
+    }
+        count++;
+}
