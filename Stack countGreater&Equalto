@@ -1,0 +1,73 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <stack>
+using namespace std;
+
+int CountGreaterThan(stack<int>&s,int value){
+    stack<int>temp;
+    int countGreater=0;
+    while(!s.empty()){
+        temp.push(s.top());
+        if(temp.top()>value){
+            countGreater++;
+        }
+        s.pop();
+    }
+    while(!temp.empty()){
+        s.push(temp.top());
+        temp.pop();
+    }
+    return countGreater;
+}
+int CountEqualToo(stack<int>&s,int value){
+    stack<int>temp;
+    int countEqual=0;
+    while(!s.empty()){
+        temp.push(s.top());
+        if(temp.top()==value){
+            countEqual++;
+        }
+        s.pop();
+    }
+    while(!temp.empty()){
+        s.push(temp.top());
+        temp.pop();
+    }
+    return countEqual;
+}
+
+void printStack(stack<int>s){
+    while(!s.empty()){
+        cout << s.top() <<endl;
+        s.pop();
+    }
+}
+
+
+int main() {
+ 
+ stack<int>s;
+ s.push(3);
+ s.push(4);
+ s.push(5);
+ s.push(5);
+ s.push(7);
+ s.push(9);
+ s.push(1);
+ s.push(10);
+ s.push(6);
+ 
+ cout << CountGreaterThan(s,5) <<endl;
+ cout <<"---------- \n";
+ cout << CountEqualToo(s,5) <<endl;
+ cout <<"---------- \n";
+ printStack(s);
+ 
+ 
+ 
+ 
+ 
+ 
+    return 0;
+}
