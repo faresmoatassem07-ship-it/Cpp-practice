@@ -22,7 +22,7 @@ void MoveBottomTop(stack<int>&s){
     s.push(value); //finally push back our value(bottom elem now at top)
 }
 
-void PrintStack(stack<int>&s){
+void PrintStack(stack<int>s){
     while(!s.empty()){
         cout << s.top() <<endl;
         s.pop();
