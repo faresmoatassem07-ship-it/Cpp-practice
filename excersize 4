@@ -1,0 +1,55 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+using namespace std;
+
+void swap(int &a , int &b){
+    int temp = a;
+    a = b;
+    b = temp;
+}
+void BubbleSort(int arr[] , int size){
+    for(int i = 0 ; i<size-1 ; i++){// first loop to cntrl passes
+        for(int j=0 ; j<size-i-1 ; j++){// 2nd loop for comparison
+        //j<i-size-1 to elimate uneeded parts in array
+            if(arr[j]>arr[j+1]){
+                swap(arr[j] , arr[j+1]);
+            }
+        }
+    }
+}
+
+int BinarySearch(int arr[] , int size ,int key){
+    int LowerB=0;
+    int UpperB=size-1;
+        while(LowerB<=UpperB){
+            int Midpoint=(LowerB+UpperB)/2;
+            if(arr[Midpoint]==key){
+                return Midpoint;
+            }
+            else if(arr[Midpoint]>key){
+                UpperB=Midpoint-1;
+            }
+            else{
+                LowerB=Midpoint+1;
+            }
+        }
+    return -1;
+}
+    
+int main(){
+    const int size = 6;
+    int arr[]={6,3,1,8,10,4};
+    BubbleSort(arr,6);
+    
+    cout<<"sorted array: \n";
+    for(int x=0 ; x<size ; x++){
+        cout << arr[x] << "|" ;
+    }
+    cout <<endl;
+    
+    int resultIndex = BinarySearch(arr,6,10);
+    cout << resultIndex;
+    
+    return 0;
+} 
