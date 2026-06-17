@@ -1,0 +1,84 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+using namespace std;
+
+class Player {
+    protected:
+    string Name ; // player name
+    int Number ; // player jersy number
+    static int count ; //count for total players
+    
+    public:
+    Player(string N , int Num ){
+        Name = N;
+        Number=Num;
+        count++;
+    }
+    virtual void Play() = 0;
+    virtual string Sport()=0;
+    virtual void Display(){
+        cout << "the Name is : " <<Name <<endl;
+        cout << "the Jersy Number is: " <<Number <<endl;
+    }
+    int get_count(){
+        return count;
+    }
+};
+int Player::count=0;
+
+class BasketballPlayer : public Player {
+    private:
+    int Height;
+    
+    public:
+    BasketballPlayer( string Name , int Number , int H ):Player(Name,Number){
+        Height=H;
+    }
+    void Play() override {
+        cout << "jump shot \n";
+    }
+    string Sport() override {
+        return "basketball";
+    }
+    void Display() override {
+        Player::Display();
+        cout <<"the height is " << Height <<endl;
+    }
+};
+
+class FootballPlayer : public Player {
+    private:
+    int Waist;
+    
+    public:
+    FootballPlayer(string Name , int Number , int W):Player(Name,Number){
+        Waist=W;
+    }
+    void Play() override {
+        cout << "penalty kick \n";
+    }
+    string Sport() override {
+        return "football";
+    }
+    void Display() override {
+        Player::Display();
+        cout <<"the waist is " << Waist <<endl;
+    }
+};
+
+int main() {
+    BasketballPlayer A("lebron" , 34, 190);
+    Player * B = new FootballPlayer ("cristiano" ,7 , 31 );
+    
+    A.Play();
+    A.Sport();
+    A.Display();
+    
+    B->Play();
+    B->Sport();
+    B->Display();
+    
+    
+    return 0;
+}
