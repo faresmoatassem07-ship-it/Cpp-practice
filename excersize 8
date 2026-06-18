@@ -1,0 +1,98 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+#include <stack>
+#include <queue>
+using namespace std;
+
+class Book {
+    private:
+    int ISBN;
+    string Title;
+    
+    public:
+    Book(){}
+    Book(int I , string T){
+        ISBN = I;
+        Title = T;
+    }
+    int get_ISBN(){
+        return ISBN;
+    }
+    string get_Title(){
+        return Title;
+    }
+};
+
+
+void SelectionSort(Book arr[], int size){
+    for(int i = 0 ; i<size-1 ; i++){//outer loop to control passes and to divide into sorted unsorted boundary
+        int MinIndex=i;//assume first element is min and min index to change each pass
+        for(int j = i+1 ; j<size ; j++){//iner loop for the unsorted section
+            if(arr[j].get_ISBN()<arr[MinIndex].get_ISBN()){ //compare
+            MinIndex=j;// update min
+            } //swap the objects 
+        }
+                Book temp = arr[i];
+                arr[i]=arr[MinIndex];
+                arr[MinIndex]=temp;
+            
+        
+    }
+}
+
+int BinarySearch(Book arr[] ,int size ,  int key){
+    int LowerB=0;
+    int UpperB=size-1;
+    while(LowerB<=UpperB){
+        int Midpoint=(LowerB+UpperB)/2;
+        if(arr[Midpoint].get_ISBN()==key){
+            return Midpoint;
+        }
+        else if(arr[Midpoint].get_ISBN()>key){
+            UpperB=Midpoint-1;
+        }
+        else{
+            LowerB=Midpoint+1;
+        }
+    }
+    return -1;
+}
+
+
+int main(){
+ 
+ const int FixedSize = 3;
+ int key;
+ Book books[FixedSize];
+ string Title1,Title2,Title3;
+ int ISBN1,ISBN2,ISBN3;
+ 
+ cout <<"enter your title for book number 1 \n";
+ cin >> Title1;
+ cout << "enter your ISBN for book number 1 \n";
+ cin >> ISBN1;
+ books[0]=Book(ISBN1,Title1);
+ 
+ cout <<"enter your title for book number 2 \n";
+ cin >> Title2;
+ cout << "enter your ISBN for book number 2 \n";
+ cin >> ISBN2;
+ books[1]=Book(ISBN2,Title2);
+ 
+ cout <<"enter your title for book number 3 \n";
+ cin >> Title3;
+ cout << "enter your ISBN for book number 3 \n";
+ cin >> ISBN3;
+ books[2]=Book(ISBN3,Title3);
+ 
+ cout<<"enter your key \n";
+ cin>>key;
+ 
+ 
+ SelectionSort(books,3);
+ int result=BinarySearch(books,3,key);
+ cout <<result <<endl;
+
+ return 0;
+}
