@@ -1,0 +1,61 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+#include <stack>
+#include <queue>
+using namespace std;
+
+class Fraction {
+    private:
+    int Numerator;
+    int Denominator;
+    
+    public:
+    Fraction(){}
+    Fraction(int N , int D){
+        Numerator=N;
+        Denominator=D;
+    }
+    Fraction operator*(Fraction other){
+        Fraction Temp;
+        Temp.Numerator=Numerator*other.Numerator;
+        Temp.Denominator=Denominator*other.Denominator;
+        return Temp;
+    }
+    Fraction operator/(Fraction other){
+        Fraction Temp;
+        Temp.Numerator=Numerator*other.Denominator;
+        Temp.Denominator=Denominator*other.Numerator;
+        return Temp;
+    }
+    Fraction operator*=(Fraction other){
+     Numerator*=other.Numerator;
+     Denominator*=other.Denominator;
+        return *this;
+    }
+    bool operator==(Fraction other){
+        if(Numerator==other.Numerator && Denominator==other.Denominator){
+            return true;
+        }
+    return false;
+    }
+    void Print_Fraction(){
+        cout << Numerator << " / " <<Denominator <<endl;
+    }
+};
+
+int main() {
+   Fraction A(5,4);
+   Fraction B(3,8);
+   
+   Fraction result1 =A*B;
+   cout <<"result 1 is: " <<endl;
+   result1.Print_Fraction();
+   
+   Fraction result2 =A/B;
+   cout<<"result 2 is: " <<endl;
+   result2.Print_Fraction();
+   
+   
+    return 0;
+}
