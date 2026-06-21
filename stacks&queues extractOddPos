@@ -1,0 +1,110 @@
+#include <iostream>
+
+#include <cmath>
+
+#include <string>
+
+#include <stack>
+
+#include <queue>
+
+using namespace std;
+
+
+
+queue<int> extractOddPositions(stack<int>&s){// since the user will enter stack but will return queue
+
+    queue<int>q;
+
+    stack<int>temp;
+
+    int counter=1;
+
+    while(!s.empty()){
+
+        if(counter%2!=0){ //checks if odd
+
+            q.push(s.top()); // push into queue
+
+        }
+
+        s.pop(); // go onto next number
+
+        counter++; // and increase count
+
+    }
+
+    while(!q.empty()){
+
+        temp.push(q.front()); //move elemnts to temp stack
+
+        q.pop();
+
+    }
+
+    while(!temp.empty()){
+
+        q.push(temp.top()); //bring them back to reverse order
+
+        q.pop();
+
+    }
+
+    return q;
+
+}
+
+
+
+void PrintQueue(queue<int>q){
+
+    int FixedSize=q.size();
+
+    for(int i =0 ; i<FixedSize ; i++){
+
+        cout <<"| " << q.front() <<" |" ;
+
+        q.pop();
+
+    }
+
+}
+
+
+
+int main() {
+
+   stack<int>s;
+
+  
+
+    s.push(10);
+
+    s.push(9);
+
+    s.push(7);
+
+    s.push(3);
+
+    s.push(8);
+
+    s.push(2);
+
+    s.push(1);
+
+   
+
+   queue<int>copy=extractOddPositions(s);
+
+   PrintQueue(copy);
+
+   
+
+   
+
+
+
+    return 0;
+
+} 
+
