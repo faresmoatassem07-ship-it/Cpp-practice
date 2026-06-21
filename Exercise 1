@@ -1,0 +1,73 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+#include <stack>
+#include <queue>
+using namespace std;
+
+class Student {
+    private:
+    string Name;
+    int Grade;
+    
+    public:
+    Student(){}
+    Student(string N , int G){
+        Name = N;
+        Grade = G;
+    }
+    int get_grade(){
+        return Grade;
+    }
+    string get_name(){
+        return Name;
+    }
+};
+void SelectionSort(Student arr[],int size){
+    for(int i =0 ; i<size-1 ; i++){ // outerloop to control passes and sorted//unsorted boundary
+        int MinIndex=i; // since before i they are done
+        for(int j = i+1 ; j<size ;j++){ //inner loop to search unsorted part for mine
+            if(arr[j].get_grade()<arr[MinIndex].get_grade()){
+                MinIndex=j; //search for correct min
+            }
+        }
+        Student temp = arr[i];
+        arr[i]= arr[MinIndex];
+        arr[MinIndex]=temp;
+    }
+}
+
+int LinearSearch(Student arr[],int size,string Name){
+    for(int i =0 ; i<size ; i++){
+        if(arr[i].get_name()==Name){
+            return i;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    const int size = 3;
+   Student students[3];
+   students[0]=Student("John" , 9);
+   students[1]=Student("Mark", 8);
+   students[2]=Student("Bob",5);
+   
+    SelectionSort(students, 3);
+    int result=LinearSearch(students,3,"Bob");
+    cout << "-----Printed Array-------\n";
+    
+    for(int i =0 ; i<size ; i++){
+        cout <<"the Name is: " << students[i].get_name() <<endl;
+        cout <<"the Grade is: " <<students[i].get_grade() <<endl;
+    }
+   
+   if(result!=-1){
+       cout << "foud" <<endl;
+   }
+   else{
+       cout <<"not found"<<endl;
+   }
+
+    return 0;
+}
